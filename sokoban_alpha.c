@@ -172,9 +172,9 @@ int main(void) {
 			break;
 		case 'h':
 			if (map_file[0][pl_y][pl_x] == 4) {	//있던 자리가 박스 놓는 위치일 경우
-				if (map_current[0][pl_y][pl_x - 1] == 2) {	//오른쪽이 박스일 경우
+				if (map_current[0][pl_y][pl_x - 1] == 2) {	//왼쪽이 박스일 경우
 					if (map_current[0][pl_y][pl_x - 2] != 1 && map_current[0][pl_y][pl_x - 2] != 2) {//건너편이 박스랑 벽이 아닐 경우
-						map_current[0][pl_y][pl_x - 1] = 5;	//플레이어 오른쪽 이동
+						map_current[0][pl_y][pl_x - 1] = 5;	//플레이어 왼쪽 이동
 						map_current[0][pl_y][pl_x - 2] = 2; //건너편 박스
 						map_current[0][pl_y][pl_x] = 4;
 					}
@@ -182,7 +182,7 @@ int main(void) {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y][pl_x - 1] == 1) {	//오른쪽이 벽일 경우
+				else if (map_current[0][pl_y][pl_x - 1] == 1) {	//왼쪽이 벽일 경우
 					break;
 				}
 				else if (map_current[0][pl_y][pl_x - 1] == 0) {
@@ -191,7 +191,7 @@ int main(void) {
 				}
 			}
 			else {	//있던 자리가 공백일 경우
-				if (map_current[0][pl_y][pl_x - 1] == 2) {	//오른쪽이 박스일 경우
+				if (map_current[0][pl_y][pl_x - 1] == 2) {	//왼쪽이 박스일 경우
 					if (map_current[0][pl_y][pl_x - 2] != 1 && map_current[0][pl_y][pl_x - 2] != 2) {//건너편이 박스랑 벽이 아닐 경우
 						map_current[0][pl_y][pl_x - 1] = 5;	//플레이어 오른쪽 이동
 						map_current[0][pl_y][pl_x - 2] = 2; //건너편 박스
@@ -201,7 +201,7 @@ int main(void) {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y][pl_x - 1] == 1) {	//오른쪽이 벽일 경우
+				else if (map_current[0][pl_y][pl_x - 1] == 1) {	//왼쪽이 벽일 경우
 					break;
 				}
 				else if (map_current[0][pl_y][pl_x - 1] == 0) {
@@ -212,9 +212,9 @@ int main(void) {
 			break;
 		case 'j':
 			if (map_file[0][pl_y][pl_x] == 4) {	//있던 자리가 박스 놓는 위치일 경우
-				if (map_current[0][pl_y + 1][pl_x] == 2) {	//오른쪽이 박스일 경우
+				if (map_current[0][pl_y + 1][pl_x] == 2) {	//아래쪽이 박스일 경우
 					if (map_current[0][pl_y + 2][pl_x] != 1 && map_current[0][pl_y + 2][pl_x] != 2) {//건너편이 박스랑 벽이 아닐 경우
-						map_current[0][pl_y + 1][pl_x] = 5;	//플레이어 오른쪽 이동
+						map_current[0][pl_y + 1][pl_x] = 5;	//플레이어 아래쪽 이동
 						map_current[0][pl_y + 2][pl_x] = 2; //건너편 박스
 						map_current[0][pl_y][pl_x] = 4;
 					}
@@ -222,7 +222,7 @@ int main(void) {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y + 1][pl_x] == 1) {	//오른쪽이 벽일 경우
+				else if (map_current[0][pl_y + 1][pl_x] == 1) {	//아래쪽이 벽일 경우
 					break;
 				}
 				else if (map_current[0][pl_y + 1][pl_x] == 0) {
@@ -231,9 +231,9 @@ int main(void) {
 				}
 			}
 			else {	//있던 자리가 공백일 경우
-				if (map_current[0][pl_y + 1][pl_x] == 2) {	//오른쪽이 박스일 경우
+				if (map_current[0][pl_y + 1][pl_x] == 2) {	//아래쪽이 박스일 경우
 					if (map_current[0][pl_y + 2][pl_x] != 1 && map_current[0][pl_y + 2][pl_x] != 2) {//건너편이 박스랑 벽이 아닐 경우
-						map_current[0][pl_y + 1][pl_x] = 5;	//플레이어 오른쪽 이동
+						map_current[0][pl_y + 1][pl_x] = 5;	//플레이어 아래쪽 이동
 						map_current[0][pl_y + 2][pl_x] = 2; //건너편 박스
 						map_current[0][pl_y][pl_x] = 0;
 					}
@@ -241,7 +241,7 @@ int main(void) {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y + 1][pl_x] == 1) {	//오른쪽이 벽일 경우
+				else if (map_current[0][pl_y + 1][pl_x] == 1) {	//아래쪽이 벽일 경우
 					break;
 				}
 				else if (map_current[0][pl_y + 1][pl_x] == 0) {
@@ -252,9 +252,9 @@ int main(void) {
 			break;
 		case 'k':
 			if (map_file[0][pl_y][pl_x] == 4) {	//있던 자리가 박스 놓는 위치일 경우
-				if (map_current[0][pl_y - 1][pl_x] == 2) {	//오른쪽이 박스일 경우
+				if (map_current[0][pl_y - 1][pl_x] == 2) {	//위쪽이 박스일 경우
 					if (map_current[0][pl_y - 2][pl_x] != 1 && map_current[0][pl_y - 2][pl_x] != 2) {//건너편이 박스랑 벽이 아닐 경우
-						map_current[0][pl_y - 1][pl_x] = 5;	//플레이어 오른쪽 이동
+						map_current[0][pl_y - 1][pl_x] = 5;	//플레이어 위쪽 이동
 						map_current[0][pl_y - 2][pl_x] = 2; //건너편 박스
 						map_current[0][pl_y][pl_x] = 4;
 					}
@@ -262,7 +262,7 @@ int main(void) {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y - 1][pl_x] == 1) {	//오른쪽이 벽일 경우
+				else if (map_current[0][pl_y - 1][pl_x] == 1) {	//위쪽이 벽일 경우
 					break;
 				}
 				else if (map_current[0][pl_y - 1][pl_x] == 0) {
@@ -271,9 +271,9 @@ int main(void) {
 				}
 			}
 			else {	//있던 자리가 공백일 경우
-				if (map_current[0][pl_y - 1][pl_x] == 2) {	//오른쪽이 박스일 경우
+				if (map_current[0][pl_y - 1][pl_x] == 2) {	//위쪽이 박스일 경우
 					if (map_current[0][pl_y - 2][pl_x] != 1 && map_current[0][pl_y - 2][pl_x] != 2) {//건너편이 박스랑 벽이 아닐 경우
-						map_current[0][pl_y - 1][pl_x] = 5;	//플레이어 오른쪽 이동
+						map_current[0][pl_y - 1][pl_x] = 5;	//플레이어 위쪽 이동
 						map_current[0][pl_y - 2][pl_x] = 2; //건너편 박스
 						map_current[0][pl_y][pl_x] = 0;
 					}
@@ -281,7 +281,7 @@ int main(void) {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y - 1][pl_x] == 1) {	//오른쪽이 벽일 경우
+				else if (map_current[0][pl_y - 1][pl_x] == 1) {	//위쪽이 벽일 경우
 					break;
 				}
 				else if (map_current[0][pl_y - 1][pl_x] == 0) {
