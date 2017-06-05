@@ -36,7 +36,7 @@ int main(void) {
 	system("clear");
 	printf("Start....\n");
 	printf("input name : ");
-	scanf("%s", name);	//ÀÌ¸§ ÀÔ·Â¹ŞÀ½
+	scanf("%s", name);	//ì´ë¦„ ì…ë ¥ë°›ìŒ
 
 	FILE *file = fopen("map.txt", "r");
 
@@ -63,19 +63,19 @@ int main(void) {
 			}
 			else {
 				switch (ch) {
-				case ' ':	//°ø¹éÀÏ °æ¿ì 0À¸·Î ÀúÀå
+				case ' ':	//ê³µë°±ì¼ ê²½ìš° 0ìœ¼ë¡œ ì €ì¥
 					map_file[i][j][k] = 0;
 					break;
-				case '#':	//º®ÀÏ °æ¿ì 1·Î ÀúÀå
+				case '#':	//ë²½ì¼ ê²½ìš° 1ë¡œ ì €ì¥
 					map_file[i][j][k] = 1;
 					break;
-				case '$':	//¹Ú½ºÀÏ °æ¿ì 2·Î ÀúÀå
+				case '$':	//ë°•ìŠ¤ì¼ ê²½ìš° 2ë¡œ ì €ì¥
 					map_file[i][j][k] = 2;
 					break;
-				case 'O':	//¹Ú½º ³õ´Â°÷ÀÏ °æ¿ì 4·Î ÀúÀå
+				case 'O':	//ë°•ìŠ¤ ë†“ëŠ”ê³³ì¼ ê²½ìš° 4ë¡œ ì €ì¥
 					map_file[i][j][k] = 4;
 					break;
-				case '@':	//ÇÃ·¹ÀÌ¾îÀÏ °æ¿ì 5·Î ÀúÀå
+				case '@':	//í”Œë ˆì´ì–´ì¼ ê²½ìš° 5ë¡œ ì €ì¥
 					map_file[i][j][k] = 5;
 					break;
 				default:
@@ -131,18 +131,18 @@ int main(void) {
 		get = getch();
 		switch (get) {
 		case 'l':
-			if (map_file[0][pl_y][pl_x] == 4) {	//ÀÖ´ø ÀÚ¸®°¡ ¹Ú½º ³õ´Â À§Ä¡ÀÏ °æ¿ì
-				if (map_current[0][pl_y][pl_x + 1] == 2) {	//¿À¸¥ÂÊÀÌ ¹Ú½ºÀÏ °æ¿ì
-					if (map_current[0][pl_y][pl_x + 2] != 1 || map_current[0][pl_y][pl_x + 2] != 2) {//°Ç³ÊÆíÀÌ ¹Ú½º¶û º®ÀÌ ¾Æ´Ò °æ¿ì
-						map_current[0][pl_y][pl_x + 1] = 5;	//ÇÃ·¹ÀÌ¾î ¿À¸¥ÂÊ ÀÌµ¿
-						map_current[0][pl_y][pl_x + 2] = 2; //°Ç³ÊÆí ¹Ú½º
+			if (map_file[0][pl_y][pl_x] == 4) {	//ìˆë˜ ìë¦¬ê°€ ë°•ìŠ¤ ë†“ëŠ” ìœ„ì¹˜ì¼ ê²½ìš°
+				if (map_current[0][pl_y][pl_x + 1] == 2) {	//ì˜¤ë¥¸ìª½ì´ ë°•ìŠ¤ì¼ ê²½ìš°
+					if (map_current[0][pl_y][pl_x + 2] != 1 && map_current[0][pl_y][pl_x + 2] != 2) {//ê±´ë„ˆí¸ì´ ë°•ìŠ¤ë‘ ë²½ì´ ì•„ë‹ ê²½ìš°
+						map_current[0][pl_y][pl_x + 1] = 5;	//í”Œë ˆì´ì–´ ì˜¤ë¥¸ìª½ ì´ë™
+						map_current[0][pl_y][pl_x + 2] = 2; //ê±´ë„ˆí¸ ë°•ìŠ¤
 						map_current[0][pl_y][pl_x] = 4;
 					}
 					else {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y][pl_x + 1] == 1) {	//¿À¸¥ÂÊÀÌ º®ÀÏ °æ¿ì
+				else if (map_current[0][pl_y][pl_x + 1] == 1) {	//ì˜¤ë¥¸ìª½ì´ ë²½ì¼ ê²½ìš°
 					break;
 				}
 				else if (map_current[0][pl_y][pl_x + 1] == 0) {
@@ -150,18 +150,18 @@ int main(void) {
 					map_current[0][pl_y][pl_x] = 4;
 				}
 			}
-			else {	//ÀÖ´ø ÀÚ¸®°¡ °ø¹éÀÏ °æ¿ì
-				if (map_current[0][pl_y][pl_x + 1] == 2) {	//¿À¸¥ÂÊÀÌ ¹Ú½ºÀÏ °æ¿ì
-					if (map_current[0][pl_y][pl_x + 2] != 1 || map_current[0][pl_y][pl_x + 2] != 2) {//°Ç³ÊÆíÀÌ ¹Ú½º¶û º®ÀÌ ¾Æ´Ò °æ¿ì
-						map_current[0][pl_y][pl_x + 1] = 5;	//ÇÃ·¹ÀÌ¾î ¿À¸¥ÂÊ ÀÌµ¿
-						map_current[0][pl_y][pl_x + 2] = 2; //°Ç³ÊÆí ¹Ú½º
+			else {	//ìˆë˜ ìë¦¬ê°€ ê³µë°±ì¼ ê²½ìš°
+				if (map_current[0][pl_y][pl_x + 1] == 2) {	//ì˜¤ë¥¸ìª½ì´ ë°•ìŠ¤ì¼ ê²½ìš°
+					if (map_current[0][pl_y][pl_x + 2] != 1 && map_current[0][pl_y][pl_x + 2] != 2) {//ê±´ë„ˆí¸ì´ ë°•ìŠ¤ë‘ ë²½ì´ ì•„ë‹ ê²½ìš°
+						map_current[0][pl_y][pl_x + 1] = 5;	//í”Œë ˆì´ì–´ ì˜¤ë¥¸ìª½ ì´ë™
+						map_current[0][pl_y][pl_x + 2] = 2; //ê±´ë„ˆí¸ ë°•ìŠ¤
 						map_current[0][pl_y][pl_x] = 0;
 					}
 					else {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y][pl_x + 1] == 1) {	//¿À¸¥ÂÊÀÌ º®ÀÏ °æ¿ì
+				else if (map_current[0][pl_y][pl_x + 1] == 1) {	//ì˜¤ë¥¸ìª½ì´ ë²½ì¼ ê²½ìš°
 					break;
 				}
 				else if (map_current[0][pl_y][pl_x + 1] == 0) {
@@ -171,18 +171,18 @@ int main(void) {
 			}
 			break;
 		case 'h':
-			if (map_file[0][pl_y][pl_x] == 4) {	//ÀÖ´ø ÀÚ¸®°¡ ¹Ú½º ³õ´Â À§Ä¡ÀÏ °æ¿ì
-				if (map_current[0][pl_y][pl_x - 1] == 2) {	//¿À¸¥ÂÊÀÌ ¹Ú½ºÀÏ °æ¿ì
-					if (map_current[0][pl_y][pl_x - 2] != 1 || map_current[0][pl_y][pl_x - 2] != 2) {//°Ç³ÊÆíÀÌ ¹Ú½º¶û º®ÀÌ ¾Æ´Ò °æ¿ì
-						map_current[0][pl_y][pl_x - 1] = 5;	//ÇÃ·¹ÀÌ¾î ¿À¸¥ÂÊ ÀÌµ¿
-						map_current[0][pl_y][pl_x - 2] = 2; //°Ç³ÊÆí ¹Ú½º
+			if (map_file[0][pl_y][pl_x] == 4) {	//ìˆë˜ ìë¦¬ê°€ ë°•ìŠ¤ ë†“ëŠ” ìœ„ì¹˜ì¼ ê²½ìš°
+				if (map_current[0][pl_y][pl_x - 1] == 2) {	//ì˜¤ë¥¸ìª½ì´ ë°•ìŠ¤ì¼ ê²½ìš°
+					if (map_current[0][pl_y][pl_x - 2] != 1 && map_current[0][pl_y][pl_x - 2] != 2) {//ê±´ë„ˆí¸ì´ ë°•ìŠ¤ë‘ ë²½ì´ ì•„ë‹ ê²½ìš°
+						map_current[0][pl_y][pl_x - 1] = 5;	//í”Œë ˆì´ì–´ ì˜¤ë¥¸ìª½ ì´ë™
+						map_current[0][pl_y][pl_x - 2] = 2; //ê±´ë„ˆí¸ ë°•ìŠ¤
 						map_current[0][pl_y][pl_x] = 4;
 					}
 					else {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y][pl_x - 1] == 1) {	//¿À¸¥ÂÊÀÌ º®ÀÏ °æ¿ì
+				else if (map_current[0][pl_y][pl_x - 1] == 1) {	//ì˜¤ë¥¸ìª½ì´ ë²½ì¼ ê²½ìš°
 					break;
 				}
 				else if (map_current[0][pl_y][pl_x - 1] == 0) {
@@ -190,18 +190,18 @@ int main(void) {
 					map_current[0][pl_y][pl_x] = 4;
 				}
 			}
-			else {	//ÀÖ´ø ÀÚ¸®°¡ °ø¹éÀÏ °æ¿ì
-				if (map_current[0][pl_y][pl_x - 1] == 2) {	//¿À¸¥ÂÊÀÌ ¹Ú½ºÀÏ °æ¿ì
-					if (map_current[0][pl_y][pl_x - 2] != 1 || map_current[0][pl_y][pl_x - 2] != 2) {//°Ç³ÊÆíÀÌ ¹Ú½º¶û º®ÀÌ ¾Æ´Ò °æ¿ì
-						map_current[0][pl_y][pl_x - 1] = 5;	//ÇÃ·¹ÀÌ¾î ¿À¸¥ÂÊ ÀÌµ¿
-						map_current[0][pl_y][pl_x - 2] = 2; //°Ç³ÊÆí ¹Ú½º
+			else {	//ìˆë˜ ìë¦¬ê°€ ê³µë°±ì¼ ê²½ìš°
+				if (map_current[0][pl_y][pl_x - 1] == 2) {	//ì˜¤ë¥¸ìª½ì´ ë°•ìŠ¤ì¼ ê²½ìš°
+					if (map_current[0][pl_y][pl_x - 2] != 1 && map_current[0][pl_y][pl_x - 2] != 2) {//ê±´ë„ˆí¸ì´ ë°•ìŠ¤ë‘ ë²½ì´ ì•„ë‹ ê²½ìš°
+						map_current[0][pl_y][pl_x - 1] = 5;	//í”Œë ˆì´ì–´ ì˜¤ë¥¸ìª½ ì´ë™
+						map_current[0][pl_y][pl_x - 2] = 2; //ê±´ë„ˆí¸ ë°•ìŠ¤
 						map_current[0][pl_y][pl_x] = 0;
 					}
 					else {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y][pl_x - 1] == 1) {	//¿À¸¥ÂÊÀÌ º®ÀÏ °æ¿ì
+				else if (map_current[0][pl_y][pl_x - 1] == 1) {	//ì˜¤ë¥¸ìª½ì´ ë²½ì¼ ê²½ìš°
 					break;
 				}
 				else if (map_current[0][pl_y][pl_x - 1] == 0) {
@@ -211,18 +211,18 @@ int main(void) {
 			}
 			break;
 		case 'j':
-			if (map_file[0][pl_y][pl_x] == 4) {	//ÀÖ´ø ÀÚ¸®°¡ ¹Ú½º ³õ´Â À§Ä¡ÀÏ °æ¿ì
-				if (map_current[0][pl_y + 1][pl_x] == 2) {	//¿À¸¥ÂÊÀÌ ¹Ú½ºÀÏ °æ¿ì
-					if (map_current[0][pl_y + 2][pl_x] != 1 || map_current[0][pl_y + 2][pl_x] != 2) {//°Ç³ÊÆíÀÌ ¹Ú½º¶û º®ÀÌ ¾Æ´Ò °æ¿ì
-						map_current[0][pl_y + 1][pl_x] = 5;	//ÇÃ·¹ÀÌ¾î ¿À¸¥ÂÊ ÀÌµ¿
-						map_current[0][pl_y + 2][pl_x] = 2; //°Ç³ÊÆí ¹Ú½º
+			if (map_file[0][pl_y][pl_x] == 4) {	//ìˆë˜ ìë¦¬ê°€ ë°•ìŠ¤ ë†“ëŠ” ìœ„ì¹˜ì¼ ê²½ìš°
+				if (map_current[0][pl_y + 1][pl_x] == 2) {	//ì˜¤ë¥¸ìª½ì´ ë°•ìŠ¤ì¼ ê²½ìš°
+					if (map_current[0][pl_y + 2][pl_x] != 1 && map_current[0][pl_y + 2][pl_x] != 2) {//ê±´ë„ˆí¸ì´ ë°•ìŠ¤ë‘ ë²½ì´ ì•„ë‹ ê²½ìš°
+						map_current[0][pl_y + 1][pl_x] = 5;	//í”Œë ˆì´ì–´ ì˜¤ë¥¸ìª½ ì´ë™
+						map_current[0][pl_y + 2][pl_x] = 2; //ê±´ë„ˆí¸ ë°•ìŠ¤
 						map_current[0][pl_y][pl_x] = 4;
 					}
 					else {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y + 1][pl_x] == 1) {	//¿À¸¥ÂÊÀÌ º®ÀÏ °æ¿ì
+				else if (map_current[0][pl_y + 1][pl_x] == 1) {	//ì˜¤ë¥¸ìª½ì´ ë²½ì¼ ê²½ìš°
 					break;
 				}
 				else if (map_current[0][pl_y + 1][pl_x] == 0) {
@@ -230,18 +230,18 @@ int main(void) {
 					map_current[0][pl_y][pl_x] = 4;
 				}
 			}
-			else {	//ÀÖ´ø ÀÚ¸®°¡ °ø¹éÀÏ °æ¿ì
-				if (map_current[0][pl_y + 1][pl_x] == 2) {	//¿À¸¥ÂÊÀÌ ¹Ú½ºÀÏ °æ¿ì
-					if (map_current[0][pl_y + 2][pl_x] != 1 || map_current[0][pl_y + 2][pl_x] != 2) {//°Ç³ÊÆíÀÌ ¹Ú½º¶û º®ÀÌ ¾Æ´Ò °æ¿ì
-						map_current[0][pl_y + 1][pl_x] = 5;	//ÇÃ·¹ÀÌ¾î ¿À¸¥ÂÊ ÀÌµ¿
-						map_current[0][pl_y + 2][pl_x] = 2; //°Ç³ÊÆí ¹Ú½º
+			else {	//ìˆë˜ ìë¦¬ê°€ ê³µë°±ì¼ ê²½ìš°
+				if (map_current[0][pl_y + 1][pl_x] == 2) {	//ì˜¤ë¥¸ìª½ì´ ë°•ìŠ¤ì¼ ê²½ìš°
+					if (map_current[0][pl_y + 2][pl_x] != 1 && map_current[0][pl_y + 2][pl_x] != 2) {//ê±´ë„ˆí¸ì´ ë°•ìŠ¤ë‘ ë²½ì´ ì•„ë‹ ê²½ìš°
+						map_current[0][pl_y + 1][pl_x] = 5;	//í”Œë ˆì´ì–´ ì˜¤ë¥¸ìª½ ì´ë™
+						map_current[0][pl_y + 2][pl_x] = 2; //ê±´ë„ˆí¸ ë°•ìŠ¤
 						map_current[0][pl_y][pl_x] = 0;
 					}
 					else {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y + 1][pl_x] == 1) {	//¿À¸¥ÂÊÀÌ º®ÀÏ °æ¿ì
+				else if (map_current[0][pl_y + 1][pl_x] == 1) {	//ì˜¤ë¥¸ìª½ì´ ë²½ì¼ ê²½ìš°
 					break;
 				}
 				else if (map_current[0][pl_y + 1][pl_x] == 0) {
@@ -251,18 +251,18 @@ int main(void) {
 			}
 			break;
 		case 'k':
-			if (map_file[0][pl_y][pl_x] == 4) {	//ÀÖ´ø ÀÚ¸®°¡ ¹Ú½º ³õ´Â À§Ä¡ÀÏ °æ¿ì
-				if (map_current[0][pl_y - 1][pl_x] == 2) {	//¿À¸¥ÂÊÀÌ ¹Ú½ºÀÏ °æ¿ì
-					if (map_current[0][pl_y - 2][pl_x] != 1 || map_current[0][pl_y - 2][pl_x] != 2) {//°Ç³ÊÆíÀÌ ¹Ú½º¶û º®ÀÌ ¾Æ´Ò °æ¿ì
-						map_current[0][pl_y - 1][pl_x] = 5;	//ÇÃ·¹ÀÌ¾î ¿À¸¥ÂÊ ÀÌµ¿
-						map_current[0][pl_y - 2][pl_x] = 2; //°Ç³ÊÆí ¹Ú½º
+			if (map_file[0][pl_y][pl_x] == 4) {	//ìˆë˜ ìë¦¬ê°€ ë°•ìŠ¤ ë†“ëŠ” ìœ„ì¹˜ì¼ ê²½ìš°
+				if (map_current[0][pl_y - 1][pl_x] == 2) {	//ì˜¤ë¥¸ìª½ì´ ë°•ìŠ¤ì¼ ê²½ìš°
+					if (map_current[0][pl_y - 2][pl_x] != 1 && map_current[0][pl_y - 2][pl_x] != 2) {//ê±´ë„ˆí¸ì´ ë°•ìŠ¤ë‘ ë²½ì´ ì•„ë‹ ê²½ìš°
+						map_current[0][pl_y - 1][pl_x] = 5;	//í”Œë ˆì´ì–´ ì˜¤ë¥¸ìª½ ì´ë™
+						map_current[0][pl_y - 2][pl_x] = 2; //ê±´ë„ˆí¸ ë°•ìŠ¤
 						map_current[0][pl_y][pl_x] = 4;
 					}
 					else {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y - 1][pl_x] == 1) {	//¿À¸¥ÂÊÀÌ º®ÀÏ °æ¿ì
+				else if (map_current[0][pl_y - 1][pl_x] == 1) {	//ì˜¤ë¥¸ìª½ì´ ë²½ì¼ ê²½ìš°
 					break;
 				}
 				else if (map_current[0][pl_y - 1][pl_x] == 0) {
@@ -270,18 +270,18 @@ int main(void) {
 					map_current[0][pl_y][pl_x] = 4;
 				}
 			}
-			else {	//ÀÖ´ø ÀÚ¸®°¡ °ø¹éÀÏ °æ¿ì
-				if (map_current[0][pl_y - 1][pl_x] == 2) {	//¿À¸¥ÂÊÀÌ ¹Ú½ºÀÏ °æ¿ì
-					if (map_current[0][pl_y - 2][pl_x] != 1 || map_current[0][pl_y - 2][pl_x] != 2) {//°Ç³ÊÆíÀÌ ¹Ú½º¶û º®ÀÌ ¾Æ´Ò °æ¿ì
-						map_current[0][pl_y - 1][pl_x] = 5;	//ÇÃ·¹ÀÌ¾î ¿À¸¥ÂÊ ÀÌµ¿
-						map_current[0][pl_y - 2][pl_x] = 2; //°Ç³ÊÆí ¹Ú½º
+			else {	//ìˆë˜ ìë¦¬ê°€ ê³µë°±ì¼ ê²½ìš°
+				if (map_current[0][pl_y - 1][pl_x] == 2) {	//ì˜¤ë¥¸ìª½ì´ ë°•ìŠ¤ì¼ ê²½ìš°
+					if (map_current[0][pl_y - 2][pl_x] != 1 && map_current[0][pl_y - 2][pl_x] != 2) {//ê±´ë„ˆí¸ì´ ë°•ìŠ¤ë‘ ë²½ì´ ì•„ë‹ ê²½ìš°
+						map_current[0][pl_y - 1][pl_x] = 5;	//í”Œë ˆì´ì–´ ì˜¤ë¥¸ìª½ ì´ë™
+						map_current[0][pl_y - 2][pl_x] = 2; //ê±´ë„ˆí¸ ë°•ìŠ¤
 						map_current[0][pl_y][pl_x] = 0;
 					}
 					else {
 						break;
 					}
 				}
-				else if (map_current[0][pl_y - 1][pl_x] == 1) {	//¿À¸¥ÂÊÀÌ º®ÀÏ °æ¿ì
+				else if (map_current[0][pl_y - 1][pl_x] == 1) {	//ì˜¤ë¥¸ìª½ì´ ë²½ì¼ ê²½ìš°
 					break;
 				}
 				else if (map_current[0][pl_y - 1][pl_x] == 0) {
