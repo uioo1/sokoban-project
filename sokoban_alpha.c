@@ -426,9 +426,25 @@ void other_act(){
 	case 'd':	//명령 내용 보여주기
 		getkey();		
 		if (enter_judge == 1) {
-			
+			getkey();
+			system("clear");
+			showname();
+			printf("\n");
+			printf("h(왼쪽), j(아래), k(위), l(오른쪽)\n");
+			printf("u(undo)\n");
+			printf("r(replay)\n");
+			printf("n(new)\n");
+			printf("e(exit)\n");
+			printf("s(save)\n");
+			printf("f(file load)\n");
+			printf("d(display help)\n");
+			printf("t(top)\n");
+			game_act = 'd';
+			showcommand();
+			printf("%c", get);
+			getch();
 		}
-		game_act = 'd';
+	}
 		break;
 	case 'f': 	//저장된 내용을 불러오기
 		getkey();		
@@ -451,7 +467,16 @@ void other_act(){
 	case 't':	//게임 순위 보여주기
 		getkey();		
 		if (enter_judge == 1) {
-			
+			system("clear");
+			showname();
+			for (i = 0; i < 5; i++) {
+				printf("%.1f\n", diff_time[stage]);
+			}
+			showcommand();
+			printf("%c", get);
+			getch();
+
+		}
 		}
 		game_act = 't';
 		break;
