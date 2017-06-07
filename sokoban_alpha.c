@@ -16,6 +16,7 @@ void showmap();
 void showcommand();
 void showname();
 void pl_move();
+void other_act();
 
 int getch(void) {
 	int ch;
@@ -340,6 +341,36 @@ void pl_move() {
 				map_current[stage][pl_y][pl_x] = 0;	//있던 자리는 공백
 			}
 		}
+		break;
+	default:
+		break;
+	}
+}
+void other_act(){
+	switch (get) {
+	case 'r':	//현재 맵 처음부터 다시 시작
+		
+		break;
+	case 'n':	//첫번째 맵부터 다시 시작
+		
+		break;
+	case 'e':	//게임 종료, 종료하기전에 저장해야 함
+		
+		break;
+	case 's': 	//현재 상태를 파일에 저장	
+
+		break;
+	case 'd':	//명령 내용 보여주기
+		
+		break;
+	case 'f': 	//저장된 내용을 불러오기
+		
+		break;
+	case 't':	//게임 순위 보여주기
+		
+		break;
+	case 'u':	//예전 상태로 돌아가기, 최대 5번까지
+
 		break;
 	default:
 		break;
