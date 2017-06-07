@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <termio.h>
 
-int i = -1, j, k, stage, dl_x, dl_y;
-char get, game_act;
+int i = -1, j, k, stage, dl_x, dl_y, enter_judge;
+char get, game_act, get_enter;
 int map_current[5][30][30];
 int pl_x, pl_y;
 int map_file[5][30][30] = {};
@@ -174,6 +174,14 @@ void showmap(){
 
 void showcommand(){
 	printf("(Command) %c", game_act);
+}
+
+void getkey() {
+	enter_judge = 0;
+	printf("%c", get); 
+	get_enter = getch();
+	if (get_enter == '\n')
+		enter_judge = 1;
 }
 
 void pl_move() {
@@ -349,28 +357,60 @@ void pl_move() {
 void other_act(){
 	switch (get) {
 	case 'r':	//현재 맵 처음부터 다시 시작
-		
+		getkey();		
+		if (enter_judge == 1) {
+			
+		}
+		game_act = 'r';
 		break;
 	case 'n':	//첫번째 맵부터 다시 시작
-		
+		getkey();		
+		if (enter_judge == 1) {
+			
+		}
+		game_act = 'n';
 		break;
 	case 'e':	//게임 종료, 종료하기전에 저장해야 함
-		
+		getkey();		
+		if (enter_judge == 1) {
+			
+		}
+		game_act = 'e';
 		break;
-	case 's': 	//현재 상태를 파일에 저장	
-
+	case 's': 	//현재 상태를 파일에 저장
+		getkey();		
+		if (enter_judge == 1) {
+			
+		}
+		game_act = 's';
 		break;
 	case 'd':	//명령 내용 보여주기
-		
+		getkey();		
+		if (enter_judge == 1) {
+			
+		}
+		game_act = 'd';
 		break;
 	case 'f': 	//저장된 내용을 불러오기
-		
+		getkey();		
+		if (enter_judge == 1) {
+			
+		}
+		game_act = 'f';
 		break;
 	case 't':	//게임 순위 보여주기
-		
+		getkey();		
+		if (enter_judge == 1) {
+			
+		}
+		game_act = 't';
 		break;
 	case 'u':	//예전 상태로 돌아가기, 최대 5번까지
-
+		getkey();		
+		if (enter_judge == 1) {
+			
+		}
+		game_act = 'u';
 		break;
 	default:
 		break;
