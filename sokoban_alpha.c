@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <termio.h>
 
-int i = -1, j, k, stage, dl_x, dl_y, enter_judge;
+int i = -1, j, k, stage, dl_x, dl_y, enter_judge, save_count, game_exit,save_stage;
 char get, game_act, get_enter;
 int map_current[5][30][30];
 int pl_x, pl_y;
@@ -384,14 +384,32 @@ void other_act(){
 	case 'e':	//게임 종료, 종료하기전에 저장해야 함
 		getkey();		
 		if (enter_judge == 1) {
-			
+			if (save_count == 1) {
+				game_exit = 1;
+			}
+			else {
+				printf("\n종료하기 전에 저장해야 합니다");
+			}
+		}
 		}
 		game_act = 'e';
 		break;
 	case 's': 	//현재 상태를 파일에 저장
 		getkey();		
 		if (enter_judge == 1) {
-			
+			FILE *f = fopen("sokoban.txt", "w");
+			fprintf(f, "%d", stage);
+			int j, k;
+			for (j = 0; j < 30; j++) {
+				for (k = 0; k < 30; k++) {
+					fprintf(f, "%d", map_current[stage][j][k]);
+				}
+			}
+			save_count = 1;
+			fclose(f);
+		}
+	}
+
 		}
 		game_act = 's';
 		break;
@@ -405,9 +423,20 @@ void other_act(){
 	case 'f': 	//저장된 내용을 불러오기
 		getkey();		
 		if (enter_judge == 1) {
-			
+			FILE *f = fopen("sokoban.txt", "r");
+			fscanf(f, "%c", &save_stage);
+			for (j = 0; j < 30; j++) {
+				for (k = 0; k < 30; k++) {
+					fscanf(f, "%c", &ch);
+					map_current[save_stage][j][k] = ch - 48;
+				}
+			}
+			stage = save_stage - 48;
+			fclose(f);
+			game_act = 'f';
+				}
+			}
 		}
-		game_act = 'f';
 		break;
 	case 't':	//게임 순위 보여주기
 		getkey();		
