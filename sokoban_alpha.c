@@ -359,14 +359,25 @@ void other_act(){
 	case 'r':	//현재 맵 처음부터 다시 시작
 		getkey();		
 		if (enter_judge == 1) {
-			
+			for (j = 0; j < 30; j++) {
+				for (k = 0; k < 30; k++) {
+					map_current[stage][j][k] = map_file[stage][j][k];
+				}
+			}
 		}
 		game_act = 'r';
 		break;
 	case 'n':	//첫번째 맵부터 다시 시작
 		getkey();		
 		if (enter_judge == 1) {
-			
+			stage = 0;
+			for (i = 0; i < 5; i++) {
+				for (j = 0; j < 30; j++) {
+					for (k = 0; k < 30; k++) {
+						map_current[i][j][k] = map_file[i][j][k];
+					}
+				}
+			}
 		}
 		game_act = 'n';
 		break;
