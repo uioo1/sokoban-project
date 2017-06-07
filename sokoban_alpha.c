@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <termio.h>
+#include <time.h>
 
 int i = -1, j, k, stage, dl_x, dl_y, enter_judge, save_count, game_exit,save_stage;
 char get, game_act, get_enter;
 int map_current[5][30][30];
-int pl_x, pl_y;
+int pl_x, pl_y,start_time[5],finish_time[5],diff_time[5],time_num=0,clear_num;
 int map_file[5][30][30] = {};
 char name[10];
 char ch = 0;
@@ -17,6 +18,8 @@ void showcommand();
 void showname();
 void pl_move();
 void other_act();
+void time_set();
+void clear();
 
 int getch(void) {
 	int ch;
@@ -174,6 +177,13 @@ void showmap(){
 
 void showcommand(){
 	printf("(Command) %c", game_act);
+}
+
+void time_set() {
+	if (time_num == 0) {
+		start_time[stage] = clock();
+		time_num = 1;
+	}
 }
 
 void getkey() {
@@ -454,5 +464,26 @@ void other_act(){
 		break;
 	default:
 		break;
+	}
+}
+void clear(){	//게임을 클리어 했는지 판단하는 함수
+	clear_num = 0;
+	for (j = 0; j < 30; j++) {	//박스 놓는 곳이 있는지 판단하기
+		for (k = 0; k < 30; k++) {
+			if (map_current[stage][j][k] == 4) {
+				clear_num++;
+			}
+		}
+	}
+	if (clear_num == 0 && map_file[stage][pl_y + dl_y][pl_x + dl_x] != 4) {	//박스 놓는 곳이 없고 플레이어 위치가 박스 놓는 곳이 아니라면 클리어
+		finish_time[stage] = clock();
+		diff_time[stage] = (finish_time[stage] - start_time[stage]) * 2.5 / CLOCKS_PER_SEC;
+		stage++;
+		time_num = 0;
+		getch();
+
+		if (stage == 5) {
+			game_exit = 1;
+		}
 	}
 }
