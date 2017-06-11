@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <termio.h>
+#include <unistd.h>
 #include <time.h>
 
 int i = -1, j, k, stage = 0, clear_num, time_num = 0, undo_reset_num = 0, first_com_error = 0;
@@ -65,7 +66,14 @@ int main(void){
 		other_act();
 		clear();
 	}
-	printf("\nSee YOU %s\n\n\n", name);
+	if (stage != 5) {
+		system("clear");
+		printf("\nSee YOU %s....\n\n\n", name);
+	}
+	else {
+		system("clear");
+		printf("\n게임을 클리어하셨습니다! %s님축하합니다~\n\n\n", name);
+	}
 	showcommand();
 
 	return 0;
@@ -415,7 +423,8 @@ void other_act(){
 			game_exit = 1;
 		}
 		else {
-			printf("\n종료하기 전에 저장해야 합니다\n");
+			printf("e\n종료하기 전에 저장해야 합니다\n");
+			sleep(1);
 		}
 		game_act = 'e';
 		break;
@@ -498,8 +507,7 @@ void other_act(){
 		game_act = 'u';
 		break;
 	case '*':	//맵을 넘어가기 위한 치트키
-		if (stage != 4)
-			stage++;
+		stage++;
 		game_act = '*';
 		break;
 	case '/':	//맵을 이전으로 가기 위한 치트키
@@ -521,18 +529,17 @@ void clear(){	//게임을 클리어 했는지 판단하는 함수
 			}
 		}
 	}
-	if (clear_num == 0 && map_file[stage][pl_y + dl_y][pl_x + dl_x] != 4) {	//박스 놓는 곳이 없고 플레이어 위치가 박스 놓는 곳이 아니라면 클리어
+	if (stage != 5 && clear_num == 0 && map_file[stage][pl_y + dl_y][pl_x + dl_x] != 4) {	//박스 놓는 곳이 없고 플레이어 위치가 박스 놓는 곳이 아니라면 클리어
 		finish_time[stage] = clock();
 		diff_time[stage] = (finish_time[stage] - start_time[stage]) * 2.5 / CLOCKS_PER_SEC;
 		printf("걸린시간: %.1f초", diff_time[stage]);
 		stage++;
 		undo_reset_num = 0;
 		time_num = 0;
-		getch();
-
-		if (stage == 5) {
-			game_exit = 1;
-		}
+		getch();		
+	}
+	if (stage == 5) {
+		game_exit = 1;
 	}
 }
 
