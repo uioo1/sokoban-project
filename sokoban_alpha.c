@@ -5,11 +5,11 @@
 #include <time.h>
 
 int i = -1, j, k, stage = 0, clear_num, time_num = 0, undo_reset_num = 0, first_com_error = 0;
-int box_num, boxput_num;
+int box_num = 0, boxput_num = 0, err_num = 0;
 int pl_x, pl_y, game_exit = 0, save_stage, save_count = 0, dl_x, dl_y;
 int map_end[5][1], end_cnt;
 double start_time[5], finish_time[5], diff_time[5] = { 0 };
-char ch = 0, game_act, get;
+char ch = 0, game_act = 0, get;
 char map_current[5][30][30], map_load[30][30];
 char map_file[5][30][30] = { };
 char undo[5][30][30];
@@ -17,6 +17,7 @@ char name[10];
 
 void getname();
 void getmap();
+void checkmap();
 void showmap();
 void showcommand();
 void showname();
@@ -27,6 +28,7 @@ void other_act();
 void undo_save();
 void undo_reset();
 void clear(); 
+void after_game();
 
 int getch(void){	//문자열을 입력받는 함수
 		int ch;
@@ -54,7 +56,7 @@ int getch(void){	//문자열을 입력받는 함수
 int main(void){
 	getname();
 	getmap();
-	
+	checkmap();
 	while(game_exit != 1) {		
 		system("clear");
 		showname();
@@ -66,14 +68,7 @@ int main(void){
 		other_act();
 		clear();
 	}
-	if (stage != 5) {
-		system("clear");
-		printf("\nSee YOU %s....\n\n\n", name);
-	}
-	else {
-		system("clear");
-		printf("\n게임을 클리어하셨습니다! %s님축하합니다~\n\n\n", name);
-	}
+	after_game();
 	showcommand();
 
 	return 0;
@@ -159,6 +154,25 @@ void getmap(){	//map.txt에서 맵 불러와서 저장
 		}
 	}
 	fclose(file);
+}
+
+void checkmap() {
+	for (i = 0; i<5; i++) {
+		for (j = 0; j<30; j++) {
+			for (k = 0; k<30; k++) {
+				if (map_file[i][j][k] == 2)
+					box_num++;
+				if (map_file[i][j][k] == 4)
+					boxput_num++;
+			}
+		}
+		if (box_num != boxput_num) {
+			game_exit = 1;
+			err_num = 1;
+		}
+		box_num = 0;
+		boxput_num = 0;
+	}
 }
 
 void showname(){
@@ -453,7 +467,8 @@ void other_act(){
 		printf("s(save)\n");
 		printf("f(file load)\n");
 		printf("d(display help)\n");
-		printf("t(top)\n\n");
+		printf("t(top)\n");
+		printf("/,*(치트키 오우예)\n\n");
 		game_act = 'd';
 		showcommand();
 		game_act = ' ';
@@ -504,6 +519,15 @@ void other_act(){
 			}
 		}
 		game_act = 'u';
+		break;
+	case '*':	//맵을 넘어가기 위한 치트키
+		stage++;
+		game_act = '*';
+		break;
+	case '/':	//맵을 이전으로 가기 위한 치트키
+		if (stage != 0)
+			stage--;
+		game_act = '/';
 		break;
 	default:
 		break;
@@ -559,4 +583,20 @@ void undo_reset() {	//초반에 undo 눌렀을때 안움직이게 해주고 r, n
 		}
 	}
 	undo_reset_num = 1;
+}
+
+void after_game() {
+	if (err_num == 1) {
+		system("clear");
+		printf("\n맵 파일에서 박스개수와 보관장수 개수가 같지 않습니다\n\n\n");
+		printf("(Command) %c", game_act);
+	}
+	else if (stage < 5) {
+		system("clear");
+		printf("\nSee YOU %s....\n\n\n", name);
+	}
+	else if (stage == 5){
+		system("clear");
+		printf("\n게임을 클리어하셨습니다! %s님축하합니다~\n\n\n", name);
+	}	
 }
