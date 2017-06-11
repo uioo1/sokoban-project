@@ -467,8 +467,7 @@ void other_act(){
 		printf("s(save)\n");
 		printf("f(file load)\n");
 		printf("d(display help)\n");
-		printf("t(top)\n");
-		printf("/,*(치트키 오우예)\n\n");
+		printf("t(top)\n\n");
 		game_act = 'd';
 		showcommand();
 		game_act = ' ';
@@ -519,15 +518,6 @@ void other_act(){
 			}
 		}
 		game_act = 'u';
-		break;
-	case '*':	//맵을 넘어가기 위한 치트키
-		stage++;
-		game_act = '*';
-		break;
-	case '/':	//맵을 이전으로 가기 위한 치트키
-		if (stage != 0)
-			stage--;
-		game_act = '/';
 		break;
 	default:
 		break;
